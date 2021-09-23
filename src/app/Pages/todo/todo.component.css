@@ -1,0 +1,18 @@
+table {
+  width: 100%;
+}
+
+th.mat-sort-header-sorted {
+  color: black;
+}
+.button-group {
+  display: flex;
+  align-items: flex-start;
+}
+.userId mat-form-field{
+  width: 10%;
+}
+
+.search {
+  margin-left: 1%;
+}

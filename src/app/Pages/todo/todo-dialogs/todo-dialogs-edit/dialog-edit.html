@@ -1,0 +1,18 @@
+<h1 mat-dialog-title>Edit # {{data.todo.id}} task</h1>
+<div mat-dialog-content>
+  <mat-form-field>
+    <mat-label>New title</mat-label>
+    <input matInput [(ngModel)]="data.todo.title">
+  </mat-form-field>
+  <div>
+    <span> Status
+      <mat-checkbox [(ngModel)]="data.todo.status">
+      </mat-checkbox>
+    </span>
+  </div>
+</div>
+<div mat-dialog-actions>
+  <button mat-button [mat-dialog-close] = true>Edit</button>
+  <button mat-button mat-dialog-close>Exit</button>
+</div>
+

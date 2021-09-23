@@ -1,0 +1,24 @@
+<app-header [page] = '"edit"'></app-header>
+<div class="edit">
+    <mat-card>
+        <mat-card-title>
+            Profile
+        </mat-card-title>
+        <mat-card-content>
+        <form [formGroup]="edit" (ngSubmit)="onSubmit()">
+            <h4>Color of Header</h4>
+            <mat-form-field>
+                <mat-label>Background Color</mat-label>
+                <mat-select formControlName="backgroundColor">
+                  <mat-option *ngFor="let color of colors" [value]="color">
+                    {{color | backspacePipe}}
+                  </mat-option>
+                </mat-select>                  <mat-error *ngIf="edit.controls['backgroundColor'].invalid">
+                    Please enter your new background color
+                  </mat-error>
+                </mat-form-field>
+                <button type=submit mat-button>Update color</button>        
+        </form>
+        </mat-card-content>
+    </mat-card>
+</div>

@@ -1,0 +1,22 @@
+<h1 mat-dialog-title>Create a new task</h1>
+<div mat-dialog-content>
+  <mat-form-field>
+    <mat-label>Title</mat-label>
+    <input matInput [(ngModel)]="data.title">
+  </mat-form-field>
+</div>
+<form *ngIf="data.admin === 'true'">
+  <mat-form-field class="example-full-width">
+    <mat-label>Nickname</mat-label>
+    <input type="text" matInput [formControl]="searchControl" [(ngModel)]="data.user" #input [matAutocomplete]="auto">
+    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" >
+      <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+        {{option.nickname}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</form>
+<div mat-dialog-actions>
+  <button mat-button [mat-dialog-close]= "data">Create</button>
+  <button mat-button mat-dialog-close>Exit</button>
+</div>

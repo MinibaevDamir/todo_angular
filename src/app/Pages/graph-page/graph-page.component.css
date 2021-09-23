@@ -1,0 +1,32 @@
+.chartOpt {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+mat-form-field {
+    margin-left: 1%;
+    margin-top: 1%;
+}
+h1 {
+    text-align: center;
+}
+.todoTable {
+    margin-top: 2%;
+
+}
+
+ng-select {
+    width: 100px;
+    height: 20px;
+}
+/* .pieChart {
+    display: flex;
+    flex-direction: row;
+} */
+table {
+    width: 100%;
+  }
+  
+  th.mat-sort-header-sorted {
+    color: black;
+  }

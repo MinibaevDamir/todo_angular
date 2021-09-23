@@ -1,0 +1,80 @@
+
+<div>
+  <app-header [page] = "'todo'" (add) = "addTodo($event)"></app-header>
+  <form [formGroup]="search">
+    <table #todoTable mat-table [dataSource]="todos" class=table>
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>
+          Id
+        </th>
+        <td mat-cell *matCellDef="let todo"> {{todo.id}} </td>
+      </ng-container>
+      <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef>
+          <div>
+            <span>
+              Title
+            </span>
+            <input formControlName="titleName" class=search>
+          </div>
+        </th>
+        <td mat-cell *matCellDef="let todo"> {{todo.title}} </td>
+      </ng-container>
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef> Status
+          <mat-checkbox formControlName="checkbox"></mat-checkbox>
+        </th>
+        <td mat-cell *matCellDef="let todo"> {{todo.status | booleanPipe}}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef>
+          <div style="margin-left: 15px">
+            Action
+          </div>
+        </th>
+        <td mat-cell *matCellDef="let todo">
+          <button mat-button (click)="openEdit(todo)">Edit</button>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="action2">
+        <th mat-header-cell *matHeaderCellDef>
+        </th>
+        <td mat-cell *matCellDef="let todo">
+          <button mat-button (click)="openDelete(todo)">Delete</button>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="users">
+        <th mat-header-cell *matHeaderCellDef class=users>
+          <div><span>Users</span>
+            <input class=search formControlName="userName">
+          </div>
+        </th>
+        <td mat-cell *matCellDef="let todo">
+          <mat-accordion>
+            <mat-expansion-panel class="mat-elevation-z0" (opened)="panelOpenState = true"
+                                 (closed)="panelOpenState = false">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Access user list
+
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <ul *ngFor="let name of todo.having_access.nickname.split(',')">
+                <li>{{name}}</li>
+              </ul>
+            </mat-expansion-panel>
+          </mat-accordion>
+        </td>
+      </ng-container>
+      <div *ngIf="admin === 'false'">
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </div>
+      <div *ngIf="admin === 'true'">
+        <tr mat-header-row *matHeaderRowDef="displayedColumnsAdmin"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumnsAdmin;"></tr>
+      </div>
+    </table>
+  </form>
+</div>

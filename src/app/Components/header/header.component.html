@@ -1,0 +1,28 @@
+
+<mat-toolbar [ngStyle] = "{'backgroundColor': headerService.getColor() | async}">
+    <mat-toolbar-row>
+      <h1>
+        To-Do list
+      </h1>
+      <div class=button-group>
+        <button mat-button (click)="logout()">
+            Logout
+        </button>
+        <button mat-button (click)="openCreate()" *ngIf = "page === 'todo'">
+            Create new task
+        </button>
+        <button mat-button (click)="download()" *ngIf = "admin === 'true' && page === 'todo'">
+            Load DB
+        </button>
+      </div>
+        <button mat-button (click) = "goToHome()" *ngIf = "page === 'edit' || page === 'graph'">
+          Home  
+        </button>
+        <button mat-button (click) = "editProfile()" *ngIf = "page === 'todo' || page === 'graph'"> 
+            Edit Profile
+        </button>
+        <button mat-button (click) = "goToGraphPage()" *ngIf = "page == 'todo' || page === 'edit'">
+            Graph Page
+        </button>
+    </mat-toolbar-row>
+</mat-toolbar>
